@@ -1,27 +1,22 @@
-# AngularDemo
+# Angular Coding Example
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.5.
+## Using Angular to Fetch and Display Data
+This project is intended to demonstrate some *basic* Angular chops.  :)
 
-## Development server
+### Description
+This code posts to an API (*https://www.swishersolutions.com/demos/api/api.php*) to receive a list of images, and then displays them in a responsive Angular grid.
+- There are two image sets that can be toggled, one of the author and one of superheroes.
+- The grid layout can be toggled between **3** and **4** columns. 
+- Each card has a ***View*** button to open the image in a new window. 
+- The cards are draggable... just for fun!
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+### See it Live! in action...
+https://www.swishersolutions.com/demos/angular-demo
 
-## Code scaffolding
+### Try it out
+If you want to download this code and get it up and running in your own environment, you'll need to install a few things. Here are the commands to intall them *(Handy, amirite?)*:
+- ng add @angular/material
+- ng add @angular/flex-layout
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+### Contact
+Author: **Mike Swisher** *https://www.swishersolutions.com*
