@@ -12,7 +12,7 @@ export class AppComponent {
 	
 	constructor(private service:PostService) {}
 	
-	apiURL = 'https://www.swishersolutions.com/demos/api/';
+	apiURL = 'https://work-samples.swishersolutions.com/api/';
 	
 	title = 'Angular Demo';	
 	
