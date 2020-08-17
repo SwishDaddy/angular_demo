@@ -1,6 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { PostService } from './services/post.service';
-import {CdkDragDrop, moveItemInArray, CdkDragEnter} from '@angular/cdk/drag-drop';
+import { MatDialog } from '@angular/material/dialog';
+
+@Component({
+  selector: 'success-dialog',
+  templateUrl: './dialogs/success-dialog.html',
+})
+
+export class SuccessDialog {}
+
+//-----------------------------------------------
 
 @Component({
   selector: 'app-root',
@@ -10,7 +19,7 @@ import {CdkDragDrop, moveItemInArray, CdkDragEnter} from '@angular/cdk/drag-drop
 
 export class AppComponent {	
 	
-	constructor(private service:PostService) {}
+	constructor(private postService:PostService, public dialog: MatDialog) {}
 	
 	baseURL = 'https://work-samples.swishersolutions.com/';
 	apiURL = 'https://work-samples.swishersolutions.com/api/';
@@ -31,18 +40,25 @@ export class AppComponent {
 	// Let 'em swap between images of Swisher and images of Superheroes
 	toggleImageSource() {
 		this.imageSource = this.imageSource === 'Swisher' ? 'Heroes' : 'Swisher';
-		this.service.getPosts(this.imageSource)
+		this.postService.getPosts(this.imageSource)
 		.subscribe(response => {
 			this.posts = response;
 		});
 	}
 		
-	// These will be the posts that we show... ultimately a JSON array from the server API
-	posts;  
+	
+	castVote() {		
+		this.postService.postValues(this.posts, this.imageSource).subscribe(response => {
+			if (response == 'success') {						
+				let dialogRef = this.dialog.open(SuccessDialog);			
+			}
+		});			
+	}
+	
 	
 	// Get the JSON
 	ngOnInit() {
-		this.service.getPosts(this.imageSource)
+		this.postService.getPosts(this.imageSource)
 		.subscribe(response => {
 			this.posts = response;
 		});
@@ -57,9 +73,45 @@ export class AppComponent {
 		window.open ("https://github.com/SwishDaddy/angular_demo");
 	}
 	
+	gohome() {
+		window.location = this.baseURL;
+	}
+	
 	showAPILog() {
 		window.open (this.apiURL + "log.php");
 	}
 	
+	swapLeft(i) {
+		this.posts = this.move(this.posts, i, i-1)
+		
+	}
 	
+	swapRight(i) {
+		this.posts = this.move(this.posts, i+1, i)
+	}
+	
+	move(array, from, to) {
+		if( to === from ) return array;
+		
+		if (to < 0) {
+			return array;
+		};
+		
+		if (from > (array.length - 1)) {
+			return array;
+		};
+		
+		var target = array[from];                         
+		var increment = to < from ? -1 : 1;
+
+		for(var k = from; k != to; k += increment){
+			array[k] = array[k + increment];
+		}
+		array[to] = target;
+		
+		array = array.slice();
+		
+		return array;
+	}
+		
 }

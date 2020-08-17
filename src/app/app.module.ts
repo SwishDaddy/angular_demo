@@ -12,7 +12,7 @@ import { MatCardModule } from "@angular/material/card";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatButtonModule } from "@angular/material/button";
 import { FlexLayoutModule } from "@angular/flex-layout";
-
+import { MatDialogModule } from "@angular/material/dialog";
 
 @NgModule({
   declarations: [
@@ -24,9 +24,12 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 	MatCardModule,
     MatToolbarModule,
     MatButtonModule,
+	MatDialogModule,
     FlexLayoutModule,
 	HttpClientModule,
-	DragDropModule	
+	DragDropModule,
+	MatDialogModule,
+	
   ],
   providers: [],
   bootstrap: [AppComponent]

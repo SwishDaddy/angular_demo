@@ -2,51 +2,57 @@
 <div  fxLayout="row wrap">
 	<mat-toolbar color="primary">
 			
-
-		<a href="{{this.baseURL}}"><img class="logo" src="./../assets/images/logo.png" /></a>
+		<!--<a href="{{this.baseURL}}"><img class="logo" src="./../assets/images/logo.png" /></a>-->
 		
-		<span class="content" fxHide.lt-md>Angular API Example</span>
 		<button mat-button (click)="openGitHub()" fxHide.lt-md>
 			<img class="github-icon" src="./../assets/images/github-logo.png" />
 		</button>
 		
 		<span style="min-width:11em;" class="content" fxHide.lt-lg>Now Showing: <i>{{this.imageSource}}</i></span>	
 		
-		<button style="margin-left:1em;" class="redButton" mat-button (click)="toggleImageSource()">
+		<button style="margin-left:1em;" mat-button (click)="toggleImageSource()">
 			<span *ngIf="imageSource === 'Swisher'">Show Heroes</span>
 			<span *ngIf="imageSource === 'Heroes'">Show Swisher</span>
 		</button>
-			
-		<button style="margin-left:5em;" class="defaultButton" mat-button (click)="toggleGridColumns()" fxHide.lt-lg>
+		
+		<button style="margin-left:1em;"mat-button (click)="toggleGridColumns()" fxHide.lt-lg>
 			<span *ngIf="gridColumns === 4">Show 3 Columns</span>
 			<span *ngIf="gridColumns === 3">Show 4 Columns</span>
 		</button>
+			
+		<button style="margin-left:1em;" class="defaultButton" mat-button (click)="castVote()">
+			<span>Cast Vote</span>
+		</button>
 		
-		<button style="margin-left:5em;" class="yellowButton" mat-button (click)="showAPILog()" fxHide.lt-lg>
-			<span>View API Access Log</span>
+		<button style="margin-left:1em;" class="redButton" mat-button (click)="gohome()">
+			<span>Close</span>
 		</button>
 		
 	</mat-toolbar>
 </div>
 
-
 <div class="content" fxLayout="row wrap" fxLayoutGap="16px grid">
 	<div [fxFlex]="(100/gridColumns) + '%'" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let post of posts; let i=index">
-		<div cdkDrag [cdkDragStartDelay]="100">
+		
 		<mat-card class="mat-elevation-z4">
-			<mat-card-header>
-				<mat-card-title>{{ post }}</mat-card-title>
-			</mat-card-header>
+					
+			<div style="text-align:center;margin-bottom:.5em;font-weight:500;"><b>{{ post }}</b> (Rank: <span class="rank_value">{{i + 1}}</span>)</div>
+			
+			<div style="text-align:center;">
+				<button mat-button (click)="swapLeft(i)" class="swapLeft"><< Move Left</button>
+				<button mat-button (click)="swapRight(i)" class="swapRight">Move Right >></button>
+				
+			</div>
+
+			
 			<img mat-card-image src="{{this.apiURL}}img/{{ post }}" />
-			<!--
-			<mat-card-content>
-				<p> {{ post }}</p>
-			</mat-card-content>
-			-->
-			<mat-card-actions>
+			
+						
+			<div style="text-align:center;">
 				<button mat-button (click)="showImage(post)">VIEW FULL SCREEN</button> 
-			</mat-card-actions>
+			</div>
+
+			
 		</mat-card>
-		</div>
 	</div>
 </div>
