@@ -6,8 +6,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class PostService {
 	
-	public apiURL = 'https://work-samples.swishersolutions.com/api/api.php';
-	
+	public apiURL = 'https://work-samples.swishersolutions.com/api/api.php';	
 	
 	constructor(private httpClient: HttpClient) { }
 
@@ -20,14 +19,10 @@ export class PostService {
 		const httpOptions = {
 			headers: new HttpHeaders({
 				'Content-Type':  'application/x-www-form-urlencoded',
-				// 'Content-Type':  'application/json',
 			})
-		};
-		
+		};		
 		
 		let postobj = 'json=' + JSON.stringify(obj) + '&rtype=' + rtype;
-	
-
 		
 		return this.httpClient.post(this.apiURL, postobj, httpOptions);
 	}

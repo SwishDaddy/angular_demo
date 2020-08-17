@@ -37,6 +37,8 @@ export class AppComponent {
 	// Deafualt to images of Siwsher
 	imageSource = 'Swisher';
 	
+	posts;
+	
 	// Let 'em swap between images of Swisher and images of Superheroes
 	toggleImageSource() {
 		this.imageSource = this.imageSource === 'Swisher' ? 'Heroes' : 'Swisher';
@@ -74,7 +76,7 @@ export class AppComponent {
 	}
 	
 	gohome() {
-		window.location = this.baseURL;
+		window.location.href = this.baseURL;
 	}
 	
 	showAPILog() {
